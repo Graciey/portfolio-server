@@ -11,7 +11,7 @@ app.use(cors());
 const db = knex({
     client: 'pg',
     connection: {
-      host : '127.0.0.1',
+      host : 'postgresql-encircled-31636',
       user : 'postgres',
       password : 'iluvmylyf',
       database : 'postgres'
@@ -27,16 +27,16 @@ const database = {
         }
     ]
 }
-app.get('/',(req,res) => {
-        res.json(database.user)
-})
+// app.get('/',(req,res) => {
+//         res.json(database.user)
+// })
 app.post('/message',(req,res) => {
     const {name,email,message} = req.body;
         db('contact').insert({
             name: name,
             email: email,
             message: message
-        }).then(response => { res.json(response[0])}).catch(err => {res.status(400).json(err)})
+        }).then(response => { res.json(response[0])}).catch(err => {res.status(400).json("unable to submit")})
        
 })
 app.listen(process.env.PORT || 4000, () => {
