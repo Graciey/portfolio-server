@@ -11,10 +11,8 @@ app.use(cors());
 const db = knex({
     client: 'pg',
     connection: {
-      host : 'postgresql-encircled-31636',
-      user : 'postgres',
-      password : 'iluvmylyf',
-      database : 'postgres'
+     host: process.env.DATABASE_URL,
+     ssl: true
     }
   });
 db.select('*').from('contact').then(data => { console.log(data)});
