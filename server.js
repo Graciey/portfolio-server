@@ -39,4 +39,6 @@ app.post('/message',(req,res) => {
         }).then(response => { res.json(response[0])}).catch(err => {res.status(400).json(err)})
        
 })
-app.listen(4000)
+app.listen(process.env.PORT || 4000, () => {
+    console.log(`running on port ${process.env.PORT}`)
+})
