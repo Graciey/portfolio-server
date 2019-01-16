@@ -9,14 +9,21 @@ app.use(bodyParser.json())
 app.use(cors());
 
 const db = knex({
-    client: 'pg',
-    connection: {
-     connectionString: process.env.DATABASE_URL,
-     ssl: true
-    }
+    host: '127.0.0.1',
+    user: 'postgres',
+    password: 'iluvmylyf',
+    database: 'contact'
   });
 db.select('*').from('contact').then(data => { console.log(data)});
-
+const database = {
+    user: [
+        {
+            name: 'seun',
+            email: 'seun@gmail.com',
+            message: 'Hellooooooo'
+        }
+    ]
+}
 // app.get('/',(req,res) => {
 //         res.json(database.user)
 // })
