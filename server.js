@@ -4,7 +4,6 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const app = express();
 const knex = require('knex')
-
 app.use(bodyParser.json())
 app.use(cors());
 
@@ -14,7 +13,7 @@ const db = knex({
         host: '127.0.0.1',
         user: 'postgres',
         password: 'iluvmylyf',
-        database: 'contact'
+        database: 'postgres'
     }
   });
 db.select('*').from('contact').then(data => { console.log(data)});
@@ -27,12 +26,19 @@ const database = {
         }
     ]
 }
-app.get('/',(req,res) => {
-        res.json(database.user)
-})
-app.post('/message',(req,res) => {
+
+
+
+
+
+// app.get('/',(req,res) => {
+//         res.json(database.user)
+// })
+app.put('/message',(req,res) => {
     const {name,email,message} = req.body;
-        db('contact').insert({
+        db('contact')
+        .returning('*')
+        .insert({
             name: name,
             email: email,
             message: message
