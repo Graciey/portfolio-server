@@ -16,15 +16,7 @@ const db = knex({
     }
   });
 db.select('*').from('contact').then(data => { console.log(data)});
-const database = {
-    user: [
-        {
-            name: 'seun',
-            email: 'seun@gmail.com',
-            message: 'Hellooooooo'
-        }
-    ]
-}
+
 // app.get('/',(req,res) => {
 //         res.json(database.user)
 // })
