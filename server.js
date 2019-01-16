@@ -9,10 +9,13 @@ app.use(bodyParser.json())
 app.use(cors());
 
 const db = knex({
-    host: '127.0.0.1',
-    user: 'postgres',
-    password: 'iluvmylyf',
-    database: 'contact'
+    client: 'pg',
+    connection:  {
+        host: '127.0.0.1',
+        user: 'postgres',
+        password: 'iluvmylyf',
+        database: 'contact'
+    }
   });
 db.select('*').from('contact').then(data => { console.log(data)});
 const database = {
@@ -24,9 +27,9 @@ const database = {
         }
     ]
 }
-// app.get('/',(req,res) => {
-//         res.json(database.user)
-// })
+app.get('/',(req,res) => {
+        res.json(database.user)
+})
 app.post('/message',(req,res) => {
     const {name,email,message} = req.body;
         db('contact').insert({
